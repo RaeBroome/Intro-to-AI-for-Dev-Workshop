@@ -1,21 +1,33 @@
 import { render, screen } from '@testing-library/react';
 import App from '../App';
 
+// Mock fetch for API calls
+beforeEach(() => {
+  global.fetch = jest.fn(() =>
+    Promise.resolve({
+      ok: true,
+      json: () => Promise.resolve([]),
+    })
+  ) as jest.Mock;
+});
+
+afterEach(() => {
+  jest.restoreAllMocks();
+});
+
 describe('App', () => {
-  it('renders the welcome message', () => {
+  it('renders the task manager heading', () => {
+    render(<App />);
+    expect(screen.getByText(/Task Manager/i)).toBeInTheDocument();
+  });
+
+  it('displays the subtitle', () => {
     render(<App />);
     expect(screen.getByText(/Agentic Workshop Starter/i)).toBeInTheDocument();
   });
 
-  it('displays the tech stack information', () => {
+  it('shows the create task form', () => {
     render(<App />);
-    expect(screen.getByText(/React 18 with TypeScript/i)).toBeInTheDocument();
-    expect(screen.getByText(/Tailwind CSS for styling/i)).toBeInTheDocument();
-    expect(screen.getByText(/Express.js backend/i)).toBeInTheDocument();
-  });
-
-  it('shows API connection status section', () => {
-    render(<App />);
-    expect(screen.getByText(/API Connection Status/i)).toBeInTheDocument();
+    expect(screen.getByText(/Create New Task/i)).toBeInTheDocument();
   });
 });

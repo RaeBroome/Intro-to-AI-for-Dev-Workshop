@@ -11,6 +11,7 @@ See https://github.com/nvm-sh/nvm?tab=readme-ov-file#install--update-script for 
 ```bash
 nvm use
 ```
+
 This will use the version specified inside `.nvmrc`. If the version is not installed, nvm will prompt you to install it.
 
 ## Step 3: Install Dependencies
@@ -24,7 +25,8 @@ This will install dependencies for the root project, frontend, and backend.
 ## Step 4: Build the application
 
 ```bash
-npm run build
+
+
 ```
 
 ## Step 5: Start the Application
@@ -66,11 +68,13 @@ All tests should pass! ✅
 ### Ports Already in Use?
 
 **Backend (3001):**
+
 1. Edit `backend/.env`
 2. Change `PORT=3001` to another port (e.g., `PORT=3002`)
 3. Update `frontend/vite.config.ts` proxy target to match
 
 **Frontend (3000):**
+
 - Vite will automatically try the next available port (3001, 3002, etc.)
 
 ### Installation Errors?
